@@ -23,7 +23,7 @@ This app outputs:
 
 ## What are the limitations of this app?
 
- - The app currently does not work with files created with MokaCan - the prescence of any of these output files in the input folder will cause the script to stall as it tries to plot > 100,000 data points.
+ - The app currently does not work with files created with MokaCan - the presence of any of these output files in the input folder will cause the script to stall as it tries to plot > 100,000 data points.
  - Currently outputs are not defined in the dxapp.json causing an error message when the app completes - the output folder is instead uploaded via a hardcoded line in the shell script and placed in coverage/uniformity_metrics/ within the named project.
  - Currently you cannot define input files - the script looks in a predefined folder for the input and this filepath is hard-coded into the script.
 
