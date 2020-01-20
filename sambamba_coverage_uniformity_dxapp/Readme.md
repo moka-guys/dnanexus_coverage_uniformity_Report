@@ -27,4 +27,3 @@ This app outputs:
  - Currently outputs are not defined in the dxapp.json causing an error message when the app completes - the output folder is instead uploaded via a hardcoded line in the shell script and placed in coverage/uniformity_metrics/ within the named project.
  - Currently you cannot define input files - the script looks in a predefined folder for the input and this filepath is hard-coded into the script.
 
-
