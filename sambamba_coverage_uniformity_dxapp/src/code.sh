@@ -28,7 +28,7 @@ main() {
     
     # Create folders for output coverage_summary_out -
     # path after output/coverage_summary_out is where in the DNA Nexus project the files will be saved.
-    outdir=output/coverage_summary_out/coverage/uniformity_metrics 
+    outdir=out/coverage_summary_out/coverage/uniformity_metrics 
     mkdir -p ${outdir}
 
     # Sambamba files for are stored at 'selected_multiqc:coverage/raw_output/''. Download the contents of this folder.
@@ -47,9 +47,7 @@ main() {
     # The docker -v flag mounts a local directory to the docker environment in the format:
     #    -v local_dir:docker_dir
     docker run -v /home/dnanexus:/home --rm graemesmith/uniform-coverage Rscript "/src/sambamba_exon_coverage.R"  "/home" /home/${outdir} ".sambamba_output.bed"
-    ls
     
     # Upload results to DNA nexus
     dx-upload-all-outputs
-
 }
