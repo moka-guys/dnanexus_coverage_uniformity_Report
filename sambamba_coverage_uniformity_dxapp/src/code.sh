@@ -44,8 +44,14 @@ main() {
     # Load docker image from tarball
     docker load < graemesmith_uniform_coverage.tar.gz
 
-    # The docker -v flag mounts a local directory to the docker environment in the format:
-    #    -v local_dir:docker_dir
+    # Execute the dockerised R script - args described below:
+    # -v /home/dnanexus:/home Bind the directory /home/dnanexus in the DNA Nexus instance to the /home folder in the docker app
+    # This insures that all the files produced in the docker instance will be saved before the docker instance closes
+    # --rm automatically remove the container when it finishes
+    # graemesmith/uniform-coverage Rscript "/src/sambamba_exon_coverage.R" Run the R script with the following parameters:
+    # "/home" = data_directory
+    # /home/${outdir} = output_directory
+    # ".sambamba_output.bed" = suffix_pattern
     docker run -v /home/dnanexus:/home --rm graemesmith/uniform-coverage Rscript "/src/sambamba_exon_coverage.R"  "/home" /home/${outdir} ".sambamba_output.bed"
     
     # Upload results to DNA nexus
