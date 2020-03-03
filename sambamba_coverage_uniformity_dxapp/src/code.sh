@@ -26,15 +26,17 @@ main() {
     API_KEY=$(dx cat project-FQqXfYQ0Z0gqx7XG9Z2b4K43:mokaguys_nexus_auth_key)
     # Capture the project runfolder name. Names the multiqc HTML input and builds the output file path
     
-    # Assign coverage report output directory name to variable and create (Hard coded)
-    outdir=coverage/uniformity_metrics && mkdir -p ${outdir}
+    # Create folders for output coverage_summary_out -
+    # path after output/coverage_summary_out is where in the DNA Nexus project the files will be saved.
+    outdir=out/coverage_summary_out/coverage/uniformity_metrics 
+    mkdir -p ${outdir}
 
     # Sambamba files for are stored at 'selected_multiqc:coverage/raw_output/''. Download the contents of this folder.
     dx download ${selected_project}:coverage/raw_output/* --auth ${API_KEY}
 
     # Call the docker image. This image is saved as a compressed tarball on DNAnexus, bundled with the app.
     # Download the docker tarball - graemesmith_uniform_coverage.tar.gz
-    dx download project-ByfFPz00jy1fk6PjpZ95F27J:file-FjQ8Kf00jy1xG0ykGjF3z4q7
+    dx download project-ByfFPz00jy1fk6PjpZ95F27J:file-FjYXPpQ0jy1y83b92fpvpkZK
 
     # Give all users access to docker.sock
     sudo chmod 666 /var/run/docker.sock
@@ -42,10 +44,16 @@ main() {
     # Load docker image from tarball
     docker load < graemesmith_uniform_coverage.tar.gz
 
-    # The docker -v flag mounts a local directory to the docker environment in the format:
-    #    -v local_dir:docker_dir
-    docker run -v /home/dnanexus:/home --rm graemesmith/uniform-coverage Rscript "/src/sambamba_exon_coverage.R"  "/home" "/home/coverage/uniformity_metrics" ".sambamba_output.bed"
-
+    # Execute the dockerised R script - args described below:
+    # -v /home/dnanexus:/home Bind the directory /home/dnanexus in the DNA Nexus instance to the /home folder in the docker app
+    # This insures that all the files produced in the docker instance will be saved before the docker instance closes
+    # --rm automatically remove the container when it finishes
+    # graemesmith/uniform-coverage Rscript "/src/sambamba_exon_coverage.R" Run the R script with the following parameters:
+    # "/home" = data_directory
+    # /home/${outdir} = output_directory
+    # ".sambamba_output.bed" = suffix_pattern
+    docker run -v /home/dnanexus:/home --rm graemesmith/uniform-coverage Rscript "/src/sambamba_exon_coverage.R"  "/home" /home/${outdir} ".sambamba_output.bed"
+    
     # Upload results to DNA nexus
-    dx upload /home/dnanexus/coverage/uniformity_metrics --recursive --path $selected_project:coverage/uniformity_metrics
+    dx-upload-all-outputs
 }
