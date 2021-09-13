@@ -10,6 +10,27 @@
       "help": "",
       "class": "string",
       "optional": false
+    },
+    {
+      "name": "plot_figures",
+      "label": "Plot figures",
+      "help": "Should figures be produced, or will the csv output suffice?",
+      "class": "boolean",
+      "default": true
+    },
+    {
+      "name": "simple_plot_only",
+      "label": "Plot simple figures only",
+      "help": "Plot only the simplified static figure (May speed up drawing plots for large data sets)",
+      "class": "boolean",
+      "default": false
+    },
+    {
+      "name": "No jitter on barplots",
+      "label": "No jitter on barplots",
+      "help": "Don't plot data points on barplots (May speed up drawing plots for large data sets)",
+      "class": "boolean",
+      "default": false
     }
   ],
   "outputSpec": [
