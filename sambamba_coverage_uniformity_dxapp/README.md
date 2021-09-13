@@ -17,7 +17,7 @@ At the core of the app is a dockerised R script which reads in all data from the
 ## What does this app output?
 
 This app outputs:
- - An inteactive HTML report with boxplots of every region sorted by coverage from low > high
+ - An interactive HTML report with boxplots of every region sorted by coverage from low > high
  - A static plot showing the average for each region
  - A csv file with the region data in tabular form
 
