@@ -20,7 +20,7 @@ p <-
   add_argument(p, "--suffix_pattern", help = "Suffix pattern to match Sambamba input", default =
                  ".sambamba_output.bed")
 p <-
-  add_argument(p, "--group_by", help = "User provided comma separated string of Pan numbers to group results together", default =
+  add_argument(p, "--group_by", help = "User provided Pan numbers to group results together in the format ParentPan=ChildPan1,ChildPan2;", default =
                  "")
 p <-
   add_argument(p, "--plot_figures", help = "Plot figures (May be very slow for large data sets)", flag =
