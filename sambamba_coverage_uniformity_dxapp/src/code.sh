@@ -44,6 +44,33 @@ main() {
     # Load docker image from tarball
     docker load < graemesmith_uniform_coverage.tar.gz
 
+    # Initialise empty string to hold any user provided arguments
+    opt_flags=""
+    
+    # If plot_figures option true add plot_figures flag to end of command
+    if [ ${plot_figures} ] 
+    then
+    opt_flags="{$opt_flags} --plot_figures "
+    fi
+    
+    # If simple_plot_only option true add simple_plot_only flag to end of command
+    if [ ${simple_plot_only} ] 
+    then
+    opt_flags="{$opt_flags} --simple_plot_only "
+    fi
+    
+    # If no_jitter option true add no_jitter flag to end of command
+    if [ ${no_jitter} ]
+    then 
+    opt_flags="{$opt_flags} --no_jitter "
+    fi 
+    
+    # If group_by option is used append to end of command
+    if [ ${group_by} != "" ]
+    then 
+    opt_flags="{$opt_flags} --group_by ${group_by} "
+    fi    
+
     # Execute the dockerised R script - args described below:
     # -v /home/dnanexus:/home Bind the directory /home/dnanexus in the DNA Nexus instance to the /home folder in the docker app
     # This insures that all the files produced in the docker instance will be saved before the docker instance closes
@@ -51,8 +78,8 @@ main() {
     # graemesmith/uniform-coverage Rscript "/src/sambamba_exon_coverage.R" Run the R script with the following parameters:
     # "/home" = data_directory
     # /home/${outdir} = output_directory
-    # ".sambamba_output.bed" = suffix_pattern
-    docker run -v /home/dnanexus:/home --rm graemesmith/uniform-coverage Rscript "/src/sambamba_exon_coverage.R"  --input_directory "/home" --output_directory /home/${outdir} --suffix_pattern ${suffix_pattern} --group_by ${group_by} --plot_figures ${plot_figures} --simple_plot_only ${simple_plot_only} --no_jitter ${no_jitter}
+    # ".sambamba_output.bed" = default suffix_pattern (can be overridden by user)
+    docker run -v /home/dnanexus:/home --rm graemesmith/uniform-coverage Rscript "/sambamba_exon_coverage.R"  --input_directory "/home" --output_directory /home/${outdir} --suffix_pattern ${suffix_pattern} ${opt_flags}
     
     # Upload results to DNA nexus
     dx-upload-all-outputs
