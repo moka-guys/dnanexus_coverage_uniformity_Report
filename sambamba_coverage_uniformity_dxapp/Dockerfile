@@ -1,5 +1,5 @@
-# Base image
-FROM r-base:4.1.0
+# Base image https://hub.docker.com/u/rocker/
+FROM rocker/verse:latest
 
 ## create directories (Mirror directory structure, /src already exists)
 RUN mkdir -p /resources /output
