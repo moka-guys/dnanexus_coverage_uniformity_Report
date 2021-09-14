@@ -7,9 +7,25 @@
     {
       "name": "selected_project",
       "label": "Name of project holding Sambamba coverage bedfiles",
-      "help": "",
+      "help": "Name of project holding Sambamba coverage bedfiles",
       "class": "string",
       "optional": false
+    },
+    {
+      "name": "input_directory",
+      "label": "Folder containing Sambamba output",
+      "help": "Folder containing Sambamba output (Default: coverage/raw_output/)",
+      "class": "string",
+      "optional": true,
+      "default" : "coverage/raw_output"
+    },
+    {
+      "name": "group_by",
+      "label": "User provided Pan numbers to group results together in the format ParentPan=ChildPan1,ChildPan2;",
+      "help": "Example: WES_panel_lists=Pan2835,Pan3174;SNP_panel_lists=Pan4009",
+      "class": "string",
+      "optional": true,
+      "default" : ""
     },
     {
       "name": "plot_figures",

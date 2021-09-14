@@ -32,7 +32,7 @@ main() {
     mkdir -p ${outdir}
 
     # Sambamba files for are stored at 'selected_multiqc:coverage/raw_output/''. Download the contents of this folder.
-    dx download ${selected_project}:coverage/raw_output/* --auth ${API_KEY}
+    dx download ${selected_project}:${input_directory}* --auth ${API_KEY}
 
     # Call the docker image. This image is saved as a compressed tarball on DNAnexus, bundled with the app.
     # Download the docker tarball - graemesmith_uniform_coverage.tar.gz
@@ -52,7 +52,7 @@ main() {
     # "/home" = data_directory
     # /home/${outdir} = output_directory
     # ".sambamba_output.bed" = suffix_pattern
-    docker run -v /home/dnanexus:/home --rm graemesmith/uniform-coverage Rscript "/src/sambamba_exon_coverage.R"  "/home" /home/${outdir} ".sambamba_output.bed"
+    docker run -v /home/dnanexus:/home --rm graemesmith/uniform-coverage Rscript "/src/sambamba_exon_coverage.R"  --input_directory "/home" --output_directory /home/${outdir} --suffix_pattern ${suffix_pattern} --group_by ${group_by} --plot_figures ${plot_figures} --simple_plot_only ${simple_plot_only} --no_jitter ${no_jitter}
     
     # Upload results to DNA nexus
     dx-upload-all-outputs
