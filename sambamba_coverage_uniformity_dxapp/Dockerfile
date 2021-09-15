@@ -1,5 +1,5 @@
 # Base image https://hub.docker.com/u/rocker/
-FROM rocker/tidyverse:4.1.0
+FROM rocker/verse:4.1.0
 
 ## create directories (Mirror directory structure, /src already exists)
 RUN mkdir -p /resources /output
