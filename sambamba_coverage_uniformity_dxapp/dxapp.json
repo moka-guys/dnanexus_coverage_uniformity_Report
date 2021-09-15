@@ -50,7 +50,7 @@
       "default": false
     },
     {
-      "name": "No jitter on barplots",
+      "name": "no_jitter",
       "label": "No jitter on barplots",
       "help": "Don't plot data points on barplots (May speed up drawing plots for large data sets)",
       "class": "boolean",
