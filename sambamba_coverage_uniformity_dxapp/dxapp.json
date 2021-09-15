@@ -17,7 +17,7 @@
       "help": "Folder containing Sambamba output (Default: coverage/raw_output/)",
       "class": "string",
       "optional": true,
-      "default" : "coverage/raw_output"
+      "default" : "coverage/raw_output/"
     },
     {
       "name": "group_by",
