@@ -79,7 +79,7 @@ main() {
     # "/home" = data_directory
     # /home/${outdir} = output_directory
     # ".sambamba_output.bed" = default suffix_pattern (can be overridden by user)
-    docker run -v /home/dnanexus:/home --rm graemesmith/uniform-coverage Rscript "/sambamba_exon_coverage.R"  --input_directory "/home" --output_directory /home/${outdir} --suffix_pattern ${suffix_pattern} ${opt_flags}
+    docker run -v /home/dnanexus:/home --rm graemesmith:uniform-coverage Rscript "/sambamba_exon_coverage.R"  --input_directory "/home" --output_directory /home/${outdir} --suffix_pattern ${suffix_pattern} ${opt_flags}
     
     # Upload results to DNA nexus
     dx-upload-all-outputs
