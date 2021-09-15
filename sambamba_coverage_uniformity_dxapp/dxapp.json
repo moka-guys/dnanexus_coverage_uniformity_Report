@@ -28,6 +28,14 @@
       "default" : ""
     },
     {
+      "name": "suffix_pattern",
+      "label": "Suffix pattern to match Sambamba input",
+      "help": "Example: WES_panel_lists=Pan2835,Pan3174;SNP_panel_lists=Pan4009",
+      "class": "string",
+      "optional": true,
+      "default" : ".sambamba_output.bed"
+    },
+    {
       "name": "plot_figures",
       "label": "Plot figures",
       "help": "Should figures be produced, or will the csv output suffice?",
