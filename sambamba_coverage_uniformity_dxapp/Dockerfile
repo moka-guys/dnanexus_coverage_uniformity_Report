@@ -1,5 +1,5 @@
 # Base image https://hub.docker.com/u/rocker/
-FROM rocker/tidyverse:latest
+FROM rocker/tidyverse:4.1.0
 
 ## create directories (Mirror directory structure, /src already exists)
 RUN mkdir -p /resources /output
@@ -12,4 +12,4 @@ COPY /sambamba_exon_coverage.R /src/sambamba_exon_coverage.R
 RUN Rscript /src/install_packages.R
 
 ## Set default behaviour
-CMD Rscript /src/sambamba_exon_coverage.R --help
+CMD Rscript /src/sambamba_exon_coverage.R 

@@ -1,6 +1,5 @@
 # Install the following packages
-install.packages("tidyverse")
+install.packages("verse")
 install.packages("plotly")
 install.packages("htmlwidgets")
 install.packages("argparser")
-install.packages("methods")
