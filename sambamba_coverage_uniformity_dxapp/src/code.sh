@@ -42,7 +42,7 @@ main() {
     sudo chmod 666 /var/run/docker.sock
 
     # Load docker image from tarball
-    docker load < graemesmith_uniform_coverage_V2.tar.gz
+    docker load < graemesmith_uniform_coverage_v2.tar.gz
 
     # Initialise empty string to hold any user provided arguments
     opt_flags=""
