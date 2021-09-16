@@ -55,7 +55,7 @@ generate_coverage_plot <- function(df, panel, simplify) {
         size = 1,
         alpha = 0,
         shape = 1
-      )
+      ) +
     }
   theme(
     plot.title = element_text(size = 11),
