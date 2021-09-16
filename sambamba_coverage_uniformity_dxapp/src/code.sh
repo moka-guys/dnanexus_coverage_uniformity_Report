@@ -66,7 +66,7 @@ main() {
     fi 
     
     # If group_by option is used append to end of command
-    if ${group_by} != ""
+    if  [[ "${group_by}" != "" ]] 
     then 
     opt_flags="${opt_flags} --group_by ${group_by} "
     fi    
