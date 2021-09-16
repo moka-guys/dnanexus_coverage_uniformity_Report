@@ -48,25 +48,25 @@ main() {
     opt_flags=""
     
     # If plot_figures option true add plot_figures flag to end of command
-    if [ ${plot_figures} ] 
+    if ${plot_figures}
     then
     opt_flags="${opt_flags} --plot_figures "
     fi
     
     # If simple_plot_only option true add simple_plot_only flag to end of command
-    if [ ${simple_plot_only} ] 
+    if ${simple_plot_only} 
     then
     opt_flags="${opt_flags} --simple_plot_only "
     fi
     
     # If no_jitter option true add no_jitter flag to end of command
-    if [ ${no_jitter} ]
+    if ${no_jitter}
     then 
     opt_flags="${opt_flags} --no_jitter "
     fi 
     
     # If group_by option is used append to end of command
-    if [ ${group_by} != "" ]
+    if ${group_by} != ""
     then 
     opt_flags="${opt_flags} --group_by ${group_by} "
     fi    
