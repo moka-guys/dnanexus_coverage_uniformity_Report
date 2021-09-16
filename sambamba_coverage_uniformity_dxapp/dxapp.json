@@ -67,7 +67,7 @@
   ],
   "runSpec": {
     "file": "src/code.sh",
-    "release": "16.04",
+    "release": "20.04",
     "interpreter": "bash",
     "timeoutPolicy": {
       "*": {
