@@ -48,15 +48,11 @@ generate_coverage_plot <- function(df, panel, simplify) {
   p <- df %>%
     ggplot(aes(x = region, y = scaled_meanCoverage)) +
     geom_boxplot(outlier.size = 0.5, aes(fill = gene)) +
-    if (args$no_jitter == FALSE) {
-      geom_jitter(
-        color = "grey",
-        width = 0.01,
-        size = 1,
-        alpha = 0,
-        shape = 1
-      ) +
-    }
+    { if (args$no_jitter == FALSE) geom_jitter(color = "grey", width = 0.01, size = 1, alpha = 0.25 , shape = 1 ) } +
+    theme(
+    plot.title = element_text(size = 11),
+    axis.text.x = element_text(angle = 45,hjust = 1,size = 6)
+    ) +
   theme(
     plot.title = element_text(size = 11),
     axis.text.x = element_text(
