@@ -19,7 +19,7 @@ Optional Inputs:
 - no_jitter: Turn off the overlayed jittered geom_points in the interactive plots leaving the data as summarised boxplots only (Showing all the data points for large data sets may cause performance issues)  Default = False
 
 ## How does this app work?
-At the core of the app is a dockerised R script which reads in all data from the folder coverage/raw_output/ in the project, cleans up the data, and outputs html, pdf, and csv reports.
+At the core of the app is a dockerised R script (See mokaguys/Coverage_Uniformity_Report repo) which reads in all data from the folder coverage/raw_output/ in the project, cleans up the data, and outputs html, pdf, and csv reports.
 
 ## What does this app output?
 
